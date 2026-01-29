@@ -38,3 +38,12 @@ Each folder corresponds to a specific book and contains my implementations of it
 │   └── Optimization_Experiments/
 └── 06_GPU/
     └── CUDA_Massively_Parallel/
+```
+
+---
+
+## 🛠️ Tech Stack & Tools
+- **Languages:** C++20/23, CUDA C++
+- **Build Systems:** CMake
+- **Parallelism:** OpenMP, MPI, std::threads
+- **Analysis:** Valgrind, Google Benchmark, Perf, NVIDIA Nsight
