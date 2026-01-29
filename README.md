@@ -1,4 +1,4 @@
-# HPC Engineering
+# HPC Engineer
 
 This repository is a structured journey through the landscape of High-Performance Computing. It serves as a practical companion to a curated curriculum, containing code implementations, performance benchmarks, and project work inspired by the foundational texts of the field.
 
