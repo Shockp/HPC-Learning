@@ -1,0 +1,32 @@
+# Build directories
+build/
+cmake-build-*/
+bin/
+lib/
+*.d
+*.o
+*.obj
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+install_manifest.txt
+*.cmake
+
+# Clang/LLVM
+.cache/
+.clangd/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Quick executables
+a.out
+*.exe

@@ -1,7 +1,0 @@
-# Ignore the build directory
-/build
-
-# Ignore common C++ artifacts
-*.o
-*.out
-*.exe
