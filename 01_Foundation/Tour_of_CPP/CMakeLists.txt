@@ -42,28 +42,46 @@ else()
 endif()
 
 # 5. FILE DISCOVERY
-# Scan the "Basics/Exercises" folder (and all subfolders) for .cpp files.
+# Scan the "Tour_of_CPP" folder (and all subfolders) for .cpp files.
 # GLOB_RECURSE: Looks inside subdirectories too.
-# EXERCISE_SOURCES: The variable where the list of files is stored.
-# WHY: Automates the build so you don't have to list every file manually.
-file(GLOB_RECURSE EXERCISE_SOURCES "Basics/Exercises/*.cpp")
+# CONFIGURE_DEPENDS: Automatically re-runs CMake if you add a new file.
+# pattern: */Exercises/*.cpp looks into "Any Folder -> Exercises -> .cpp"
+# WHY: Automates the build. You can add "2_UserDefined_Types/Exercises/NewTask.cpp"
+# and simply run 'make' without editing this file again.
+file(GLOB_RECURSE EXERCISE_SOURCES CONFIGURE_DEPENDS 
+    "${CMAKE_CURRENT_SOURCE_DIR}/*/Exercises/*.cpp"
+)
 
 # 6. EXECUTABLE GENERATION LOOP
 # Loop through every .cpp file found in the step above.
 foreach(SOURCE_FILE ${EXERCISE_SOURCES})
-    
+
+    # A. GET FILE NAME
     # Extract the file name WITHOUT the extension (e.g., "1_Physics.cpp" -> "1_Physics").
-    # NAME_WE = Name Without Extension.
-    # EXE_NAME: Holds this clean name.
     get_filename_component(EXE_NAME ${SOURCE_FILE} NAME_WE)
 
-    # Create a separate executable for this specific file.
-    # WHY: Since every exercise has its own 'main()' function, they cannot
-    # be in the same executable. This builds them as separate programs.
+    # B. GET FOLDER STRUCTURE
+    # Get the directory where this source file lives.
+    get_filename_component(PARENT_DIR ${SOURCE_FILE} DIRECTORY)
+
+    # Calculate the path relative to the main project folder.
+    # Example: If file is in "1_The_Basics/Exercises", this variable becomes "1_The_Basics/Exercises".
+    # WHY: We need this to tell CMake to recreate this specific folder structure inside 'build'.
+    file(RELATIVE_PATH RELATIVE_PATH_STR ${CMAKE_CURRENT_SOURCE_DIR} ${PARENT_DIR})
+
+    # C. CREATE EXECUTABLE
+    # Create the executable target.
     add_executable(${EXE_NAME} ${SOURCE_FILE})
 
+    # D. ORGANIZE OUTPUT
+    # Tell CMake to put the finished binary into "build/<RelativePath>".
+    # PROPERTIES RUNTIME_OUTPUT_DIRECTORY: The setting that controls where the .exe/.out goes.
+    set_target_properties(${EXE_NAME} PROPERTIES 
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${RELATIVE_PATH_STR}"
+    )
+
     # Print a log message to the terminal.
-    # WHY: sanity check. It confirms which files CMake actually found.
-    message(STATUS "Compiling ${SOURCE_FILE} into ${EXE_NAME}")
+    # WHY: Sanity check to see exactly where files are going.
+    message(STATUS "Compiling ${EXE_NAME} -> build/${RELATIVE_PATH_STR}/${EXE_NAME}")
 
 endforeach()
