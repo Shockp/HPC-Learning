@@ -1,0 +1,1 @@
+add_executable(Square_Matrix Exercises/1_Square_Matrix.cc)
