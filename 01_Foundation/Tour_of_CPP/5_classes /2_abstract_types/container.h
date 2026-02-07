@@ -2,7 +2,6 @@
 #define ABSTRACT_CONTAINER_H_
 
 namespace abstract {
-namespace container {
 
 class Container {
 public:
@@ -11,7 +10,6 @@ public:
   virtual ~Container() {}
 };
 
-} // namespace container
 } // namespace abstract
 
 #endif

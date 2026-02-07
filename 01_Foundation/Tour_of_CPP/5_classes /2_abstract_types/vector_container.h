@@ -5,22 +5,20 @@
 #include "container.h"
 
 namespace abstract {
-namespace vector {
 
-class Vector : public container::Container {
+class Vector : public Container {
 public:
   Vector(int s) : v_{s} {}
-  ~Vector() {}
+  ~Vector() = default;
 
-  double &operator[](int i) { return v_[i]; }
+  double &operator[](int i) override { return v_[i]; }
 
-  int size() const { return v_.size(); }
+  int size() const override { return v_.size(); }
 
 private:
   concrete::vector::Vector v_;
 };
 
-} // namespace vector
 } // namespace abstract
 
 #endif
