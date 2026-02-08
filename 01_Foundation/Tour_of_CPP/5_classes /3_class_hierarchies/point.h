@@ -3,27 +3,28 @@
 
 #include <cassert>
 #include <vector>
+
 namespace hierarchy {
 
 class Point {
 public:
   Point() = default;
-  explicit Point(const std::vector<int> &coords) : coords_(coords) {}
+  explicit Point(const std::vector<double> &coords) : coords_(coords) {}
 
-  const int &operator[](int index) const {
+  const double &operator[](int index) const {
     assert(index >= 0 && index < static_cast<int>(coords_.size()));
     return coords_[index];
   }
 
-  int &operator[](int index) {
+  double &operator[](int index) {
     assert(index >= 0 && index < static_cast<int>(coords_.size()));
     return coords_[index];
   }
 
-  const std::vector<int> &Coords() const { return coords_; }
+  const std::vector<double> &coords() const { return coords_; }
 
 private:
-  std::vector<int> coords_;
+  std::vector<double> coords_;
 };
 
 } // namespace hierarchy
