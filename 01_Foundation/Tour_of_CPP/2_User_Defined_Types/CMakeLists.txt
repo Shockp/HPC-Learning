@@ -1,4 +1,0 @@
-add_executable(1_Padding_Experiment Exercises/1_Padding_Experiment.cpp)
-add_executable(2_Grid_Manager Exercises/2_Grid_Manager.cpp)
-add_executable(3_Message_Parser Exercises/3_Message_Parser.cpp)
-add_executable(4_Message_Parser_Variant Exercises/4_Message_Parser_Variant.cpp)

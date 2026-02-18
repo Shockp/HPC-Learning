@@ -1,3 +1,0 @@
-add_executable(1_PhysicsCalculator Exercises/1_PhysicsCalculator.cpp)
-add_executable(2_ReferenceExperiment Exercises/2_ReferenceExperiment.cpp)
-add_executable(3_ArrayScanner Exercises/3_ArrayScanner.cpp)

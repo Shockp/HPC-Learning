@@ -208,3 +208,27 @@
 - **RAII:** Use `finally()` to provide RAII for types without destructors that require "cleanup operation".
 - **Aliases:** Use template aliases to simplify notation and hide implementation details.
 - **Compile-time selection:** Use `if constexpr` to provide alternative implementations without run-time overhead.
+
+## 8. Concepts & Generic Programming
+
+### General
+- **Compile-time programming:** Templates provide a general mechanism for compile-time programming.
+- **Initial implementation:** When designing a template, use a concrete version for initial implementation, debugging, and measurement.
+- **Containers & Ranges:** Use templates to express containers and ranges.
+- **Variadics:** Use variadic templates when you need a function that takes a variable number of arguments of a variety of types.
+- **Lambdas:** Use a lambda if you need a simple function object in one place only.
+- **Duck-typing:** Unconstrained templates offer compile-time "duck-typing".
+
+### Concepts Design
+- **Concept requirements:** When designing a template, carefully consider the concepts (requirements) assumed for its template arguments.
+- **Design tool:** Use concepts as a design tool.
+- **Explicit concepts:** Specify concepts for all template arguments.
+- **Named concepts:** Whenever possible use named concepts (e.g., standard-library concepts).
+- **Meaningful semantics:** Avoid "concepts" without meaningful semantics.
+- **Operations:** Require a complete set of operations for a concept.
+- **Complex requirements:** Avoid `requires requires`.
+- **Auto:** `auto` is the least constrained concept.
+
+### Code Organization
+- **Header definitions:** When using header files, `#include` template definitions (not just declarations) in every translation unit that uses them.
+- **Scope:** To use a template, make sure its definition (not just its declaration) is in scope.
