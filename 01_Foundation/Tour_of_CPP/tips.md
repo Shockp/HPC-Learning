@@ -189,3 +189,22 @@
 - **Copying:** Avoid explicit use of `std::copy()`.
 - **Large operands:** For large operands, use `const` reference argument types.
 - **Container design:** Follow the standard-library container design.
+
+## 7. Templates
+
+### General
+- **Algorithms:** Use templates to express algorithms that apply to many argument types.
+- **Containers:** Use templates to express containers.
+- **Abstraction:** Use templates to raise the level of abstraction of code.
+- **Type safety:** Templates are type safe, but for unconstrained templates checking happens too late.
+- **Deduction:** Let constructors or function templates deduce class template argument types.
+
+### Function Objects & Lambdas
+- **Function objects:** Use function objects as arguments to algorithms.
+- **Lambdas:** Use lambda if you need a simple function object in one place only.
+- **Virtual functions:** A virtual function member cannot be a template member function.
+
+### Advanced Mechanisms
+- **RAII:** Use `finally()` to provide RAII for types without destructors that require "cleanup operation".
+- **Aliases:** Use template aliases to simplify notation and hide implementation details.
+- **Compile-time selection:** Use `if constexpr` to provide alternative implementations without run-time overhead.
