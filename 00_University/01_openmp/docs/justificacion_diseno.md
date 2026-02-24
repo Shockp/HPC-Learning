@@ -1,7 +1,7 @@
 # Justificación de Diseño - Práctica 1 (K-Medias)
 
 ## 1. Introducción y Objetivos
-El objetivo principal de esta práctica es desarrollar un programa capaz de analizar una gran cantidad de datos en el mínimo tiempo posible[cite: 10]. Para lograrlo, el sistema implementa el algoritmo k-medias para la agrupación de datos y calcula estadísticas fundamentales (media, mínimo, máximo y varianza) para cada columna. 
+El objetivo principal de esta práctica es desarrollar un programa capaz de analizar una gran cantidad de datos en el mínimo tiempo posible. Para lograrlo, el sistema implementa el algoritmo k-medias para la agrupación de datos y calcula estadísticas fundamentales (media, mínimo, máximo y varianza) para cada columna. 
 
 Para maximizar el rendimiento, el diseño se fundamenta en una estrategia de paralelización híbrida, combinando memoria distribuida (OpenMPI) para tareas de grano grueso, con memoria compartida (OpenMP) para secciones de grano fino. Este documento detalla y justifica las decisiones arquitectónicas tomadas, cumpliendo con los requisitos de evaluación de la asignatura.
 
