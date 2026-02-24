@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace models {
+namespace openmp {
 
 /**
  * @brief Represents a 2D dataset utilizing a flattened 1D vector for optimal
@@ -51,6 +51,6 @@ struct Dataset {
   inline float *GetRowPtr(uint32_t row) { return &data[row * n_cols]; }
 };
 
-} // namespace models
+} // namespace openmp
 
 #endif // UNIVERSITY_OPENMP_MODELS_DATASET_H_
