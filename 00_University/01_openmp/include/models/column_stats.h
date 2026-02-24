@@ -1,10 +1,19 @@
-#ifndef UNIVERSITY_OPENMP_MODELS_DATASET_H_
-#define UNIVERSITY_OPENMP_MODELS_DATASET_H_
+#ifndef UNIVERSITY_OPENMP_MODELS_COLUMN_STATS_H_
+#define UNIVERSITY_OPENMP_MODELS_COLUMN_STATS_H_
 
-namespace models {
+namespace openmp {
 
-class Column_stats {};
+/**
+ * @brief Represents statistical information for a single column (feature) of
+ * the dataset.
+ */
+struct Column_stats {
+  float min = 0.0f;      /**< Minimum value in the column. */
+  float max = 0.0f;      /**< Maximum value in the column. */
+  float mean = 0.0f;     /**< Average value of the column. */
+  float variance = 0.0f; /**< Variance of the column. */
+};
 
-} // namespace models
+} // namespace openmp
 
-#endif // UNIVERSITY_OPENMP_MODELS_DATASET_H_
+#endif // UNIVERSITY_OPENMP_MODELS_COLUMN_STATS_H_
