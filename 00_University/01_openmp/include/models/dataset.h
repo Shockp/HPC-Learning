@@ -11,7 +11,15 @@ struct Dataset {
   uint32_t n_cols;
   std::vector<float> data;
 
-  
+  inline float GetValue(uint32_t row, uint32_t col) const {
+    return data[row * n_cols + col];
+  }
+
+  inline const float *GetRowPtr(uint32_t row) const {
+    return &data[row * n_cols];
+  }
+
+  inline float *GetRowPtr(uint32_t row) { return &data[row * n_cols]; }
 };
 
 } // namespace models
