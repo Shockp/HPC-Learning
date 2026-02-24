@@ -10,6 +10,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Desactivar extensiones específicas del compilador (como gnu++17) para garantizar portabilidad
 set(CMAKE_CXX_EXTENSIONS OFF) 
 
+# Exportar base de datos de comandos de compilación para que el IDE encuentre los headers
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Banderas de compilación orientadas a HPC y rendimiento extremo
 # -O3: Máximo nivel de optimización segura.
 # -march=native: Optimiza para la arquitectura específica de la CPU donde se compila (uso de AVX, etc).
@@ -33,7 +36,10 @@ set(SOURCES
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Indicar dónde están los archivos de cabecera (.h)
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(${PROJECT_NAME} PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    /usr/lib/x86_64-linux-gnu/openmpi/include
+)
 
 # Enlazar el ejecutable con las librerías de MPI y OpenMP usando targets modernos
 target_link_libraries(${PROJECT_NAME} PRIVATE MPI::MPI_CXX OpenMP::OpenMP_CXX)
