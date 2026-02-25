@@ -232,3 +232,47 @@
 ### Code Organization
 - **Header definitions:** When using header files, `#include` template definitions (not just declarations) in every translation unit that uses them.
 - **Scope:** To use a template, make sure its definition (not just its declaration) is in scope.
+
+## 9. Library Overview
+
+### General Philosophy
+- **Don't reinvent the wheel:** Use libraries.
+- **Standard library preference:** When you have a choice, prefer the standard library over other libraries.
+- **Standard library limitations:** Do not think that the standard library is ideal for everything.
+- **Includes:** If you don't use modules, remember to `#include` the appropriate headers.
+- **Namespace `std`:** Remember that standard-library facilities are defined in namespace `std`.
+- **Ranges:** When using ranges, remember to explicitly qualify algorithm names.
+- **Modules:** Prefer importing modules over `#include`ing header files.
+
+## 10. Strings & Regular Expressions
+
+### Strings
+- **Ownership:** Use `std::string` to own character sequences.
+- **String operations:** Prefer string operations to C-style string functions.
+- **Usage:** Use `string` to declare variables and members rather than as a base class.
+- **Return by value:** Return strings by value (rely on move semantics and copy elision).
+- **Substrings:** Directly or indirectly, use `substr()` to read substrings and `replace()` to write substrings.
+- **Sizing:** A `string` can grow and shrink, as needed.
+- **Range checking:** Use `at()` rather than iterators or `[]` when you want range checking.
+- **Optimization:** Use iterators and `[]` rather than `at()` when you want to optimize speed.
+- **Loops:** Use a range-for to safely minimize range checking.
+- **Input:** `string` input doesn't overflow.
+- **C-style strings:** Use `c_str()` or `data()` to produce a c-style string representation of a `string` (only) when you have to.
+- **Numeric conversion:** Use a `stringstream` or a generic value extraction function (such as `to<X>`) for numeric conversion of strings.
+- **`basic_string`:** A `basic_string` can be used to make strings of characters on any type.
+- **Suffixes:** Use the `s` suffix for string literals meant to be standard-library strings.
+
+### `string_view`
+- **`string_view` usage:** Use `string_view` as an argument of functions that need to read character sequences stored in various ways.
+- **`string_view` mental model:** Think of a `string_view` as a kind of pointer with a size attached; it does not own its characters.
+- **Suffixes:** Use the `sv` suffix for string literals meant to be standard-library `string_views`.
+
+### Regular Expressions
+- **Matching:** Use `regex_match()` to match a complete input.
+- **Searching:** Use `regex_search()` to search for a pattern in an input stream.
+- **Standards:** The regular expression notation can be adjusted to match various standards.
+- **Default notation:** The default regular expression notation is that of ECMAScript.
+- **Restraint:** Be restrained; regular expressions can easily become a write-only language.
+- **Subpatterns:** Note that `\i` for a digit `i` allows you to express a subpattern in terms of a previous subpattern.
+- **Laziness:** Use `?` to make patterns "lazy".
+- **Iterators:** Use `regex_iterators` for iterating over a stream looking for a pattern.
