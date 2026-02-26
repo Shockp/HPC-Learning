@@ -276,3 +276,47 @@
 - **Subpatterns:** Note that `\i` for a digit `i` allows you to express a subpattern in terms of a previous subpattern.
 - **Laziness:** Use `?` to make patterns "lazy".
 - **Iterators:** Use `regex_iterators` for iterating over a stream looking for a pattern.
+
+## 11. Input and Output
+
+### General
+- **Type safety:** iostreams are type-safe, type-sensitive, and extensible.
+- **Character-level input:** Use character-level input only when you have to.
+- **Ill-formed input:** When reading, always consider ill-formed input.
+- **Avoid `endl`:** Avoid `endl` (if you don't know what `endl` is, you haven't missed anything).
+- **User-defined types:** Define `<<` and `>>` for user-defined types with values that have meaningful textual representations.
+
+### Standard Streams
+- **Output streams:** Use `cout` for normal output and `cerr` for errors.
+- **Character types:** There are iostreams for ordinary characters and wide characters, and you can define an iostream for any kind of character.
+- **Binary I/O:** Binary I/O is supported.
+- **Stream types:** There are standard iostreams for standard I/O streams, files, and strings.
+
+### Input & Output Operations
+- **Chaining output:** Chain `<<` operations for a terser notation.
+- **Chaining input:** Chain `>>` operations for a terser notation.
+- **String input:** Input into strings does not overflow.
+- **Whitespace:** By default `>>` skips initial whitespace.
+- **Error handling:** Use the stream state `fail` to handle potentially recoverable I/O errors.
+- **Custom operators:** We can define `<<` and `>>` operators for our own types.
+- **Extensibility:** We don't need to modify `istream` or `ostream` to add new `<<` and `>>` operators.
+
+### Formatting
+- **Manipulators:** Use manipulators or `format()` to control formatting.
+- **Precision:** `precision()` specifications apply to all following floating-point output operations.
+- **Float format:** Floating-point format specifications (e.g., `scientific`) apply to all following floating-point output operations.
+- **Headers:** `#include <ios>` or `<iostream>` when using standard manipulators.
+- **Sticky manipulators:** Stream formatting manipulators are "sticky" for use for many values in a stream.
+- **Argument manipulators:** `#include <iomanip>` when using standard manipulators taking arguments.
+- **Date & Time:** We can output time, dates, etc. in standard formats.
+
+### Streams & Files
+- **Copying:** Don't try to copy a stream: streams are move only.
+- **File streams:** Remember to check that a file stream is attached to a file before using it.
+- **In-memory formatting:** Use stringstreams or memory streams for in-memory formatting.
+- **Conversions:** We can define conversions between any two types that both have string representation.
+
+### C-Style I/O & Filesystem
+- **C-style I/O:** C-style I/O is not type-safe.
+- **Sync:** Unless you use `printf`-family functions, call `ios_base::sync_with_stdio(false)`.
+- **Filesystem:** Prefer `<filesystem>` to direct use of platform-specific interfaces.
