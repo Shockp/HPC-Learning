@@ -320,3 +320,52 @@
 - **C-style I/O:** C-style I/O is not type-safe.
 - **Sync:** Unless you use `printf`-family functions, call `ios_base::sync_with_stdio(false)`.
 - **Filesystem:** Prefer `<filesystem>` to direct use of platform-specific interfaces.
+
+
+## 12. Containers
+
+### General
+- **Sequences:** An STL container defines a sequence.
+- **Resource handles:** STL containers are resource handles.
+- **Default container:** Use `vector` as your default container.
+- **Traversals:** For simple traversals of a container, use a range-for loop or a `begin`/`end` pair of iterators.
+
+### Sizing & Capacity
+- **Reserve:** Use `reserve()` to avoid invalidating pointers and iterators to elements.
+- **Reserve performance:** Don't assume performance benefits from `reserve()` without measurement.
+- **Growth:** Use `push_back()` or `resize()` on a container rather than `realloc()` on an array.
+- **Resized iterators:** Don't use iterators into a resized `vector`.
+
+### Element Access & Safety
+- **Range checking:** Do not assume that `[]` range checks.
+- **Guaranteed range checks:** Use `at()` when you need guaranteed range checks.
+- **Range errors:** Use range-for and standard-library algorithms for cost-free avoidance of range errors.
+
+### Element Semantics
+- **Copy semantics:** Elements are copied into a container.
+- **Polymorphism:** To preserve polymorphic behavior of elements, store pointers (built-in or user-defined).
+- **Insertion efficiency:** Insertion operations, such as `insert()` and `push_back()`, are often surprisingly efficient on a `vector`.
+
+### Container Selection
+- **Forward list:** Use `forward_list` for sequences that are usually empty.
+- **Performance:** When it comes to performance, don't trust your intuition: measure.
+- **Map implementation:** A `map` is usually implemented as a red-black tree.
+- **Unordered map:** An `unordered_map` is a hash table.
+- **Compact data:** Prefer compact and contiguous data structures.
+- **List cost:** A `list` is relatively expensive to traverse.
+- **Fast lookup:** Use unordered containers if you need fast lookup for large amounts of data.
+- **Ordered iteration:** Use ordered containers (e.g., `map` and `set`) if you need to iterate over their elements in order.
+- **No natural order:** Use unordered containers (e.g., `unordered_map`) for element types with no natural order (i.e., no reasonable `<`).
+- **Stable pointers:** Use associative containers (e.g., `map` and `list`) when you need pointers to elements to be stable as the size of the container changes.
+
+### Passing & Initialization
+- **Passing containers:** Pass a container by reference and return a container by value.
+- **Initializer syntax:** For a container, use the `()`-initializer syntax for sizes and the `{}`-initializer syntax for sequences of elements.
+
+### Hashing
+- **Hash function:** Experiment to check that you have an acceptable hash function.
+- **Combining hashes:** A hash function obtained by combining standard hash functions for elements using the exclusive-or operator (`^`) is often good.
+
+### Best Practices
+- **Standard containers:** Know your standard-library containers and prefer them to handcrafted data structures.
+- **Memory performance:** If your application is suffering performance problems related to memory, minimize free-store use and/or consider using a specialized allocator.
