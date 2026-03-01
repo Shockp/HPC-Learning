@@ -369,3 +369,20 @@
 ### Best Practices
 - **Standard containers:** Know your standard-library containers and prefer them to handcrafted data structures.
 - **Memory performance:** If your application is suffering performance problems related to memory, minimize free-store use and/or consider using a specialized allocator.
+
+## 13. Algorithms
+
+### General
+- **Sequences:** An STL algorithm operates on one or more sequences.
+- **Input sequences:** An input sequence is half-open and defined by a pair of iterators.
+- **Custom iterators:** You can define your own iterators to serve special needs.
+- **I/O streams:** Many algorithms can be applied to I/O streams.
+- **Searching:** When searching, an algorithm usually returns the end of the input sequence to indicate "not found".
+- **Non-modifying sequences:** Algorithms do not directly add or subtract elements from their argument sequences.
+- **Loop replacement:** When writing a loop, consider whether it could be expressed as a general algorithm.
+
+### Best Practices
+- **Type aliases:** Use using-type aliases to clean up messy notation.
+- **Function objects:** Use predicates and other function objects to give standard algorithms a wider range of meanings.
+- **Predicates:** A predicate must not modify its argument.
+- **Standard algorithms:** Know your standard-library algorithms and prefer them to hand-crafted loops.

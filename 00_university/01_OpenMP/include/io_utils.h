@@ -1,7 +1,8 @@
 #ifndef UNIVERSITY_OPENMP_IO_UTILS_H_
 #define UNIVERSITY_OPENMP_IO_UTILS_H_
 
-#include <string>
+#include <filesystem>
+#include <optional>
 
 #include "models/dataset.h"
 
@@ -25,7 +26,7 @@ namespace openmp {
  * @throws std::runtime_error If the file cannot be opened, dimensions cannot be
  *         read, or if there is an error reading the dataset values.
  */
-Dataset ReadBinaryFile(const std::string &filepath);
+std::optional<Dataset> ReadBinaryFile(const std::filesystem::path &filepath);
 
 } // namespace openmp
 

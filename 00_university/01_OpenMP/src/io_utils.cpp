@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <fstream>
-#include <stdexcept>
+#include <iostream>
 
 namespace openmp {
 
@@ -12,19 +12,26 @@ namespace openmp {
  *
  * @copydetails ReadBinaryFile
  */
-Dataset ReadBinaryFile(const std::string &filepath) {
+std::optional<Dataset> ReadBinaryFile(const std::filesystem::path &filepath) {
   Dataset dataset;
+
+  if (!std::filesystem::exists(filepath)) {
+    std::cerr << "File does not exist at path: " << filepath << "\n";
+    return std::nullopt;
+  }
 
   std::ifstream file(filepath, std::ios::binary);
   if (!file.is_open()) {
-    throw std::runtime_error("Failed to open file: " + filepath);
+    std::cerr << "Failed to open file: " << filepath << "\n";
+    return std::nullopt;
   }
 
   file.read(reinterpret_cast<char *>(&dataset.n_rows), sizeof(uint32_t));
   file.read(reinterpret_cast<char *>(&dataset.n_cols), sizeof(uint32_t));
 
   if (!file) {
-    throw std::runtime_error("Failed to read dataset dimensions.");
+    std::cerr << "Failed to read dataset dimensions.\n";
+    return std::nullopt;
   }
 
   const size_t total_elements =
@@ -36,8 +43,7 @@ Dataset ReadBinaryFile(const std::string &filepath) {
             total_elements * sizeof(float));
 
   if (!file) {
-    throw std::runtime_error(
-        "Error reading dataset values or EOF reached unexpectedly.");
+    std::cerr << "Error reading dataset values or EOF reached unexpectedly.\n";
   }
 
   return dataset;

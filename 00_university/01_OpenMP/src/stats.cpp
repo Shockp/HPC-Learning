@@ -71,8 +71,9 @@ ComputeLocalStats(const openmp::Dataset &local_data, MPI_Comm comm) {
 
   // --- Phase 3: Derive final statistics -----------------------------------
   std::vector<openmp::Column_stats> results(num_cols);
-  if (global_rows == 0)
+  if (global_rows == 0) {
     return results;
+  }
 
   for (uint32_t c = 0; c < num_cols; ++c) {
     results[c].min = global_min[c];
